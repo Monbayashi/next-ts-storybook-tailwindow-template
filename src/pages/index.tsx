@@ -45,6 +45,7 @@ const Home: NextPage = () => {
             <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
           </a>
         </div>
+        <h1 className='text-red-700'>HELLO</h1>
       </main>
 
       <footer className={styles.footer}>
