@@ -46,6 +46,7 @@ const Home: NextPage = () => {
           </a>
         </div>
         <h1 className='text-red-700'>HELLO</h1>
+        <button className='text-blue-400 bg-gray-700'>Button</button>
       </main>
 
       <footer className={styles.footer}>
