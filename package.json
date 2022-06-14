@@ -9,7 +9,7 @@
     "lint": "next lint",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
-    "format": "prettier --write --ignore-path .ginore './src/**/*.{js,jsx,ts,tsx,json}'"
+    "format": "prettier --write --ignore-path .gitignore ./src/**/*.{js,jsx,ts,tsx,json}"
   },
   "dependencies": {
     "next": "12.1.6",

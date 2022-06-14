@@ -1,8 +1,8 @@
-import type { ComponentMeta, ComponentStoryObj } from '@storybook/react'
+import { type ComponentMeta, type ComponentStoryObj } from '@storybook/react';
 import Home from '@/pages/index';
 
 export default {
-  title: "Pages/Home",
+  title: 'Pages/Home',
   component: Home,
 } as ComponentMeta<typeof Home>;
 
