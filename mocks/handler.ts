@@ -3,6 +3,7 @@ import { rest } from 'msw';
 export const handlers = [
   rest.get('/api/reviews', (req, res, ctx) => {
     return res(
+      ctx.delay(1000),
       ctx.json([
         {
           id: '60333292-7ca1-4361-bf38-b6b43b90cb16',

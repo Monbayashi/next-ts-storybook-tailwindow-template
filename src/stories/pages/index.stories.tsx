@@ -11,19 +11,12 @@ export default {
 } as ComponentMeta<typeof Home>;
 
 export const HomePage: ComponentStoryObj<typeof Home> = {
-  args: {
-    book: {
-      title: 'Loard of the Rings',
-      imageUrl: '/book-cover.jpg',
-      description:
-        'The Lord of the Rings is an epic high-fantasy novel written by English author and scholar J. R. R. Tolkien',
-    },
-  },
   parameters: {
     msw: {
       handlers: [
         rest.get('/api/reviews', (req, res, ctx) => {
           return res(
+            ctx.delay(1000),
             ctx.json([
               {
                 id: '60333292-7ca1-4361-bf38-b6b43b90cb16',
@@ -32,6 +25,18 @@ export const HomePage: ComponentStoryObj<typeof Home> = {
               },
             ]),
           );
+        }),
+      ],
+    },
+  },
+};
+
+export const HomePage_ERROR: ComponentStoryObj<typeof Home> = {
+  parameters: {
+    msw: {
+      handlers: [
+        rest.get('/api/reviews', (req, res, ctx) => {
+          return res(ctx.delay(1000), ctx.status(500), ctx.json({}));
         }),
       ],
     },

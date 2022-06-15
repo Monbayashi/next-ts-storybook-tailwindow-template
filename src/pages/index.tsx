@@ -1,24 +1,30 @@
+import axios from 'axios';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { useState } from 'react';
-import { EditButton } from '@/components/parts/button/edit-button';
+import { useQuery } from 'react-query';
 
-type ServerSideProps = {
-  book: {
-    title: string;
-    imageUrl: string;
-    description: string;
-  };
+type ReviewType = {
+  id: string;
+  author: string;
+  text: string;
 };
 
-const Home: NextPage<ServerSideProps> = ({ book }) => {
-  const [reviews, setReviews] = useState<any[] | null>(null);
-
-  const handleGetReviews = () => {
-    fetch('/api/reviews')
-      .then((res) => res.json())
-      .then(setReviews);
+const useQueryReviews = () => {
+  const getReviews = async () => {
+    const { data } = await axios.get<ReviewType[]>('/api/reviews');
+    return data;
   };
+
+  return useQuery<ReviewType[], Error>('reviews', getReviews, {
+    staleTime: 1000,
+    refetchOnWindowFocus: true,
+    refetchInterval: 5000,
+    retry: false,
+  });
+};
+
+const Home: NextPage = () => {
+  const { data, isFetching, isError } = useQueryReviews();
 
   return (
     <div>
@@ -28,14 +34,11 @@ const Home: NextPage<ServerSideProps> = ({ book }) => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <h1>{book.title}</h1>
-      <p>{book.description}</p>
-      <p>{book.imageUrl}</p>
-      <EditButton onClick={handleGetReviews} />
-
-      {reviews && (
+      {isFetching && <p className='text-blue-700'>loading...</p>}
+      {isError && <p className='text-red-700'>error...</p>}
+      {data && !isError && (
         <ul className='max-w-sm'>
-          {reviews.map((review) => (
+          {data.map((review) => (
             <li key={review.id}>
               <p>{review.text}</p>
               <p>{review.author}</p>
@@ -48,16 +51,3 @@ const Home: NextPage<ServerSideProps> = ({ book }) => {
 };
 
 export default Home;
-
-export async function getServerSideProps() {
-  return {
-    props: {
-      book: {
-        title: 'Loard of the Rings',
-        imageUrl: '/book-cover.jpg',
-        description:
-          'The Lord of the Rings is an epic high-fantasy novel written by English author and scholar J. R. R. Tolkien',
-      },
-    },
-  };
-}
