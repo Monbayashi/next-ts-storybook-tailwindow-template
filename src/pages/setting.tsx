@@ -42,7 +42,7 @@ const Home: NextPage = () => {
         </div>
         <h1 className='text-red-700'>HELLO</h1>
         <button className='text-blue-400 bg-gray-700'>Button</button>
-        <Link href='index'>
+        <Link href='/'>
           <a>HomePageに移動</a>
         </Link>
       </main>
