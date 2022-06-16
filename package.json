@@ -9,7 +9,8 @@
     "lint": "next lint",
     "storybook": "start-storybook -p 6006 -s ./public",
     "build-storybook": "build-storybook -s public",
-    "format": "prettier --write --ignore-path .gitignore ./src/**/*.{js,jsx,ts,tsx,json}"
+    "format": "prettier --write --ignore-path .gitignore ./src/**/*.{js,jsx,ts,tsx,json}",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "axios": "^0.27.2",
@@ -36,6 +37,7 @@
     "@types/react-dom": "18.0.5",
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
+    "cypress": "^10.1.0",
     "eslint": "8.17.0",
     "eslint-config-next": "12.1.6",
     "eslint-config-prettier": "^8.5.0",

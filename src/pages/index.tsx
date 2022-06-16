@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { useQuery } from 'react-query';
 
 type ReviewType = {
@@ -46,6 +47,12 @@ const Home: NextPage = () => {
           ))}
         </ul>
       )}
+
+      <nav className='m-4'>
+        <Link href='/about'>
+          <a className='text-blue-700 underline'>About</a>
+        </Link>
+      </nav>
     </div>
   );
 };
