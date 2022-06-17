@@ -5,4 +5,7 @@ module.exports = {
     extend: {},
   },
   plugins: [require('@tailwindcss/forms')],
+  images: {
+    domains: ['source.unsplash.com'],
+  },
 };
